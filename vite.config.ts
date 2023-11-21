@@ -5,19 +5,20 @@ import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: "/react-study/",
   resolve: {
     alias: [
       { find: "@src", replacement: path.resolve(__dirname, "src") },
       { find: "@pages", replacement: path.resolve(__dirname, "src/pages") },
       {
         find: "@components",
-        replacement: path.resolve(__dirname, "src/components"),
+        replacement: path.resolve(__dirname, "src/components")
       },
       {
         find: "@styles",
-        replacement: path.resolve(__dirname, "src/assets/styles"),
+        replacement: path.resolve(__dirname, "src/assets/styles")
       },
-      { find: "@plugins", replacement: path.resolve(__dirname, "plugins") },
-    ],
-  },
+      { find: "@plugins", replacement: path.resolve(__dirname, "plugins") }
+    ]
+  }
 });

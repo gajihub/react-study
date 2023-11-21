@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "@styles/pages/Container.module.scss";
 
 const Container = () => {

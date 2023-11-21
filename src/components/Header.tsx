@@ -1,4 +1,3 @@
-import React from "react";
 import { ButtonGroup, Button } from "@mui/material";
 import {
   StarBorderPurple500Sharp,
