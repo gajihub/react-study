@@ -1,8 +1,10 @@
 import React from "react";
 import { ButtonGroup, Button } from "@mui/material";
-import StarBorderPurple500SharpIcon from "@mui/icons-material/StarBorderPurple500Sharp";
-import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
-import DiscountOutlinedIcon from "@mui/icons-material/DiscountOutlined";
+import {
+  StarBorderPurple500Sharp,
+  AttachFileOutlined,
+  DiscountOutlined
+} from "@mui/icons-material";
 import styles from "@styles/components/Header.module.scss";
 
 const Header = () => {
@@ -20,15 +22,15 @@ const Header = () => {
           <span>0</span>안읽음
         </li>
         <li>
-          <StarBorderPurple500SharpIcon />
+          <StarBorderPurple500Sharp />
           중요
         </li>
         <li>
-          <AttachFileOutlinedIcon />
+          <AttachFileOutlined />
           첨부
         </li>
         <li>
-          <DiscountOutlinedIcon />
+          <DiscountOutlined />
           To
         </li>
       </ul>

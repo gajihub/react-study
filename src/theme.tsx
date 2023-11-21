@@ -31,6 +31,16 @@ const theme = createTheme({
         }
       }
     },
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          boxShadow: "none",
+          "&::before": {
+            display: "none"
+          }
+        }
+      }
+    },
     MuiCssBaseline: {
       styleOverrides: () => `
         ul {
