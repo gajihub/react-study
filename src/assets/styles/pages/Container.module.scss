@@ -5,4 +5,19 @@
     width: calc(100% - 251px);
     height: 100%;
     padding:25px;
+    .searchBox {
+        display: flex;
+        justify-content: flex-end;
+    }
+    .mailListTable {
+        margin-top: 19px;
+        border-top:1px solid rgba(230, 230, 234,.7);
+    }
+    .tableHead {
+        display: flex;
+        flex-direction: row;
+        li {
+            padding: 0 15px;
+        }
+    }
 }
