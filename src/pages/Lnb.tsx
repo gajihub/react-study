@@ -30,7 +30,7 @@ const Lnb = () => {
         <List className={styles.mailList}>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon>
+              <ListItemIcon className={styles.listIcon}>
                 <MailOutlineOutlined />
               </ListItemIcon>
               <ListItemText primary="전체메일" />
@@ -38,7 +38,7 @@ const Lnb = () => {
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon>
+              <ListItemIcon className={styles.listIcon}>
                 <InboxOutlined />
               </ListItemIcon>
               <ListItemText primary="받은메일함" />
@@ -46,7 +46,7 @@ const Lnb = () => {
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon>
+              <ListItemIcon className={styles.listIcon}>
                 <SendOutlined />
               </ListItemIcon>
               <ListItemText primary="보낸메일함" />
@@ -54,7 +54,7 @@ const Lnb = () => {
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon>
+              <ListItemIcon className={styles.listIcon}>
                 <InsertDriveFileOutlined />
               </ListItemIcon>
               <ListItemText primary="임시보관함" />
@@ -62,23 +62,23 @@ const Lnb = () => {
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon>
+              <ListItemIcon className={styles.listIcon}>
                 <TextSnippetOutlined />
               </ListItemIcon>
               <ListItemText primary="내게쓴메일함" />
             </ListItemButton>
           </ListItem>
         </List>
-        <Accordion className={styles.smartList}>
+        <Accordion className={styles.smartList} defaultExpanded={true}>
           <AccordionSummary
             expandIcon={<ExpandMore />}
             aria-controls="panel1a-content"
-            id="panel1a-header">
+            className={styles.smartSummary}>
             스마트메일함
           </AccordionSummary>
-          <AccordionDetails>
-            <ListItemButton>
-              <ListItemIcon>
+          <AccordionDetails className={styles.smartDetail}>
+            <ListItemButton className={styles.listButton}>
+              <ListItemIcon className={styles.listIcon}>
                 <SubdirectoryArrowRightOutlined />
               </ListItemIcon>
               <ListItemText primary="청구결제" />
@@ -88,7 +88,7 @@ const Lnb = () => {
         <List className={styles.etcList}>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon>
+              <ListItemIcon className={styles.listIcon}>
                 <DoDisturbAltOutlined />
               </ListItemIcon>
               <ListItemText primary="스팸메일함" />
@@ -96,7 +96,7 @@ const Lnb = () => {
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon>
+              <ListItemIcon className={styles.listIcon}>
                 <DeleteOutlineOutlined />
               </ListItemIcon>
               <ListItemText primary="휴지통" />

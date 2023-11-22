@@ -1,3 +1,4 @@
+import * as React from "react";
 import {
   TextField,
   InputAdornment,
@@ -17,12 +18,25 @@ import {
 import styles from "@styles/pages/Container.module.scss";
 
 const Container = () => {
+  const [checked, setChecked] = React.useState([true, false]);
+
+  const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked([event.target.checked, event.target.checked]);
+  };
+
+  const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked([event.target.checked, checked[1]]);
+  };
+
+  const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked([checked[0], event.target.checked]);
+  };
+
   return (
     <>
       <div className={styles.container}>
         <div className={styles.searchBox}>
           <TextField
-            label="검색"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="end">
@@ -46,6 +60,9 @@ const Container = () => {
                       inputProps={{
                         "aria-labelledby": ""
                       }}
+                      checked={checked[0] && checked[1]}
+                      //   indeterminate={checked[0] !== checked[1]}
+                      onChange={handleChange1}
                     />
                   </TableCell>
                   <TableCell
@@ -73,6 +90,8 @@ const Container = () => {
                       inputProps={{
                         "aria-labelledby": ""
                       }}
+                      checked={checked[0]}
+                      onChange={handleChange2}
                     />
                   </TableCell>
                   <TableCell>
@@ -111,6 +130,8 @@ const Container = () => {
                       inputProps={{
                         "aria-labelledby": ""
                       }}
+                      checked={checked[1]}
+                      onChange={handleChange3}
                     />
                   </TableCell>
                   <TableCell>

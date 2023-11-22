@@ -17,9 +17,6 @@ const theme = createTheme({
           },
           "&:focus": {
             outline: "none"
-          },
-          "&:hover": {
-            backgroundColor: "transparent"
           }
         }
       }
@@ -41,8 +38,20 @@ const theme = createTheme({
         }
       }
     },
+    MuiTableRow: {
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            backgroundColor: "transparent !important"
+          }
+        }
+      }
+    },
     MuiCssBaseline: {
       styleOverrides: () => `
+      body, html {
+        font-size: 14px;
+      }
         ul {
           list-style-type: none;
         }

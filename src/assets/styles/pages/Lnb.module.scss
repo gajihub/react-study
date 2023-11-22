@@ -5,10 +5,35 @@
     width: 251px;
     height: 100%;
     border-right: 1px solid #ddd;
+    background-color: #f6f7fa;
     .smartList {
         border-top: 1px solid #e6e6e6;
+        background-color: #f6f7fa;
+        .listButton {
+            padding:0;
+        }
+        .smartSummary {
+            min-height: 45px;
+            & > div {
+                margin: 5px;
+            }
+        }
+        .smartDetail {
+            padding: 8px 16px 8px;
+        }
     }
     .settingList {
+        font-size: 13px;
         border-top: 1px solid #e6e6e6;
+        li {
+            height: 32px;
+        }
+    }
+    .etcList {
+        padding-top:0;
+    }
+    .listIcon {
+        min-width: 20px;
+        margin-right: 6px;
     }
 }
