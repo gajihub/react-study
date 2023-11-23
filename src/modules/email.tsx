@@ -14,7 +14,7 @@ export const emailReducer = (state = initialState, action: any) => {
     case SET_EMAIL:
       return {
         ...StaticRange,
-        seleted: action.sseletedel
+        seleted: action.seleted
       };
     default:
       return state;

@@ -4,16 +4,25 @@ import {
   AttachFileOutlined,
   DiscountOutlined
 } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
+import { setemail } from "../modules/email";
 import styles from "@styles/components/Header.module.scss";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const selected = useSelector((state) => state.selected);
+
+  const emailWrite = () => {
+    dispatch(setemail("write"));
+  };
+
   return (
     <>
       <ButtonGroup
         className={styles.buttonTop}
         variant="contained"
         aria-label="Email header button">
-        <Button>메일쓰기</Button>
+        <Button onClick={emailWrite}>메일쓰기</Button>
         <Button>내게쓰기</Button>
       </ButtonGroup>
       <ul className={styles.topMenu}>
