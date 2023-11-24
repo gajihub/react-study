@@ -10,7 +10,7 @@ import styles from "@styles/components/Header.module.scss";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const selected = useSelector((state) => state.selected);
+  const selected = useSelector((state: any) => state.selected);
 
   const emailWrite = () => {
     dispatch(setemail("write"));

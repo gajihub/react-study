@@ -5,7 +5,7 @@ import EmailWrite from "@components/EmailWrite";
 import styles from "@styles/pages/Container.module.scss";
 
 const Container = () => {
-  const emailSelected = useSelector((store) => store.emailReducer.seleted);
+  const emailSelected = useSelector((store: any) => store.emailReducer.seleted);
 
   return (
     <>

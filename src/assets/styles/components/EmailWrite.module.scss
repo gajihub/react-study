@@ -1,0 +1,26 @@
+
+.writeWrap {
+    padding-top: 20px;
+    .title {
+        padding: 0 15px 22px 0;
+        font-size: 16px;
+        font-weight: 800;
+        border-bottom : 1px solid #ddd;
+    }
+    .topButton {
+        display: flex;
+        flex-direction: row;
+        padding: 8px 0;
+        border-bottom: 1px solid #e6e6eab3;
+        button {
+            font-size: 16px;
+            color:#000000cc;
+        }
+    }
+    .mailInfo {
+        padding-top: 10px;
+    }
+    .editorBox {
+        margin-top: 20px;
+    }
+}
