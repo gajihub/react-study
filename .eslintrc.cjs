@@ -7,7 +7,8 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:react-hooks/recommended",
-    "prettier"
+    "prettier",
+    "plugin:jsx-a11y/recommended"
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
@@ -24,7 +25,8 @@ module.exports = {
     "react-refresh",
     "@typescript-eslint",
     "prettier",
-    "simple-import-sort"
+    "simple-import-sort",
+    "jsx-a11y"
   ],
   rules: {
     semi: "error",
@@ -47,6 +49,7 @@ module.exports = {
     "react-refresh/only-export-components": [
       "warn",
       { allowConstantExport: true }
-    ]
+    ],
+    "jsx-a11y/rule-name": "2"
   }
 };

@@ -17,6 +17,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding:0;
         justify-content: space-between;
         width: 25%;
         font-size: 11px;
@@ -29,5 +30,12 @@
             font-weight: 500;
             color: #000; 
         }
+    }
+    .listBtn {
+        padding:0;
+        flex-direction: column;
+    }
+    .listIcon {
+        justify-content: center;
     }
 }

@@ -1,3 +1,5 @@
+import { useDispatch, useSelector } from "react-redux";
+import { setemail } from "../modules/email";
 import Header from "@components/Header";
 import {
   List,
@@ -23,13 +25,19 @@ import {
 import styles from "@styles/pages/Lnb.module.scss";
 
 const Lnb = () => {
+  const dispatch = useDispatch();
+  const selected = useSelector((state: any) => state.selected);
+
+  const emailAll = () => {
+    dispatch(setemail("basic"));
+  };
   return (
     <>
       <div className={styles.lnb}>
         <Header />
         <List className={styles.mailList}>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={emailAll}>
               <ListItemIcon className={styles.listIcon}>
                 <MailOutlineOutlined />
               </ListItemIcon>

@@ -14,9 +14,6 @@ const theme = createTheme({
         root: {
           "&:active": {
             boxShadow: "none"
-          },
-          "&:focus": {
-            outline: "none"
           }
         }
       }
@@ -52,13 +49,16 @@ const theme = createTheme({
       body, html {
         font-size: 14px;
       }
-        ul {
-          list-style-type: none;
-        }
-        ul, li {
-          margin:0;
-          padding: 0;
-        }
+      ul {
+        list-style-type: none;
+      }
+      ul, li {
+        margin:0;
+        padding: 0;
+      }
+      :focus {
+        outline: '2px solid #3f51b5';
+      }
       `
     }
   }
