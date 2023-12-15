@@ -35,7 +35,7 @@ const Header = () => {
         <Button onClick={emailWrite}>메일쓰기</Button>
         <Button onClick={emailTome}>내게쓰기</Button>
       </ButtonGroup>
-      <List className={styles.topMenu}>
+      <List className={styles.topMenu} disablePadding={true}>
         <ListItem>
           <ListItemButton className={styles.listBtn}>
             <span>0</span>안읽음

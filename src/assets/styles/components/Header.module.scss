@@ -7,8 +7,8 @@
         height: 36px;
     }
 }
-.topMenu {
-    padding: 16px 18px 8px;
+ul.topMenu {
+    padding: 16px 18px 8px 18px;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -23,6 +23,12 @@
         font-size: 11px;
         line-height: 18px;
         color: #929394;
+        & >  div {
+            width: 100%;
+            &:focus-visible {
+                outline: 1px solid #000;
+            }
+        }
         span, svg {
             margin-top: 2px;
             margin-bottom: 5px;

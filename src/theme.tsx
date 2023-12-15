@@ -14,6 +14,14 @@ const theme = createTheme({
         root: {
           "&:active": {
             boxShadow: "none"
+          },
+          "&:focus": {
+            outline: "1px solid transparent",
+            boxShadow: "none"
+          },
+          "&:focus-visible": {
+            outline: "1px solid #000",
+            boxShadow: "none"
           }
         }
       }
