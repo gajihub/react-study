@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import EmailBasic from "@components/EmailBasic";
 import EmailWrite from "@components/EmailWrite";

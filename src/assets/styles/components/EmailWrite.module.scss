@@ -12,9 +12,23 @@
         flex-direction: row;
         padding: 8px 0;
         border-bottom: 1px solid #e6e6eab3;
+        li {
+            width: auto;
+            padding:0;
+        }
         button {
             font-size: 16px;
             color:#000000cc;
+        }
+        .sendBtn {
+            margin: 0 5px 0 9px;
+            border-radius: 5px;
+            border: 1px solid #1565c0;
+            color: #1565c0;
+        }
+        .tomeBtn {
+            margin-left: 10px;
+            font-weight: 700;
         }
     }
     .mailInfo {
@@ -22,5 +36,27 @@
     }
     .editorBox {
         margin-top: 20px;
+        height: 551px;
+    }
+
+    .mailInfo_option {
+        margin-top: 20px;
+        .receiver, .reference, .subject {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            width: 100%;
+            padding: 5px 8px;
+            & > span {
+                width:100px;
+                font-size: 14px;
+                font-weight: 700;
+                display: block;
+                line-height: 30px;
+            }
+            [class~="MuiInputBase-root"] {
+                width: calc(100% - 100px);
+            }
+        }
     }
 }

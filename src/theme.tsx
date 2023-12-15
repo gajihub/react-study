@@ -2,10 +2,8 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   components: {
-    // Name of the component
     MuiButtonBase: {
       defaultProps: {
-        // The props to change the default for.
         disableRipple: true,
         disableTouchRipple: true,
         focusRipple: true

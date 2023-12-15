@@ -1,6 +1,5 @@
-import React from "react";
 import { useSelector } from "react-redux";
-import { Button, FormControl, InputLabel, Input } from "@mui/material";
+import { Button, Input, List, ListItem } from "@mui/material";
 import { SyncAlt } from "@mui/icons-material";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -14,25 +13,49 @@ const EmailWrite = () => {
         {mailType === "write" && (
           <>
             <div className={styles.title}>메일쓰기</div>
-            <ul className={styles.topButton}>
-              <li>
-                <Button variant="text">보내기</Button>
-              </li>
-              <li>
-                <Button variant="text">미리보기</Button>
-              </li>
-              <li>
-                <Button variant="text">
+            <List className={styles.topButton}>
+              <ListItem>
+                <Button variant="text" className={styles.sendBtn}>
+                  보내기
+                </Button>
+              </ListItem>
+              <ListItem>
+                <Button variant="text" className={styles.preBtn}>
+                  미리보기
+                </Button>
+              </ListItem>
+              <ListItem>
+                <Button variant="text" className={styles.tomeBtn}>
                   <SyncAlt />
                   내게쓰기
                 </Button>
-              </li>
-            </ul>
-            <div className={styles.mailInfo}>
-              <FormControl variant="standard">
-                <InputLabel htmlFor="component-simple">Name</InputLabel>
-                <Input id="component-simple" />
-              </FormControl>
+              </ListItem>
+            </List>
+            <div className={styles.mailInfo_option}>
+              <div className={styles.receiver}>
+                <span>받는 사람</span>
+                <Input
+                  inputProps={{
+                    "aria-labelledby": "받는사람"
+                  }}
+                />
+              </div>
+              <div className={styles.reference}>
+                <span>참조</span>
+                <Input
+                  inputProps={{
+                    "aria-labelledby": "참조"
+                  }}
+                />
+              </div>
+              <div className={styles.subject}>
+                <span>제목</span>
+                <Input
+                  inputProps={{
+                    "aria-labelledby": "제목"
+                  }}
+                />
+              </div>
             </div>
           </>
         )}
@@ -54,17 +77,37 @@ const EmailWrite = () => {
                 </Button>
               </li>
             </ul>
-            <div className={styles.mailInfo}>
-              <FormControl variant="standard">
-                <InputLabel htmlFor="component-simple">Name</InputLabel>
-                <Input id="component-simple" />
-              </FormControl>
+            <div className={styles.mailInfo_option}>
+              <div className={styles.receiver}>
+                <span>받는 사람</span>
+                <Input
+                  inputProps={{
+                    "aria-labelledby": "받는사람"
+                  }}
+                />
+              </div>
+              <div className={styles.reference}>
+                <span>참조</span>
+                <Input
+                  inputProps={{
+                    "aria-labelledby": "참조"
+                  }}
+                />
+              </div>
+              <div className={styles.subject}>
+                <span>제목</span>
+                <Input
+                  inputProps={{
+                    "aria-labelledby": "제목"
+                  }}
+                />
+              </div>
             </div>
           </>
         )}
 
         <div className={styles.editorBox}>
-          <ReactQuill />
+          <ReactQuill style={{ height: "551px" }} />
         </div>
       </div>
     </>

@@ -3,18 +3,11 @@ import {
   TextField,
   InputAdornment,
   Checkbox,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow
+  List,
+  ListItem,
+  ListItemButton
 } from "@mui/material";
-import {
-  Search,
-  StarOutline,
-  Email,
-  DraftsOutlined
-} from "@mui/icons-material";
+import { Search, StarOutline, Email } from "@mui/icons-material";
 import styles from "@styles/components/EmailBasic.module.scss";
 
 const EmailBasic = () => {
@@ -46,106 +39,81 @@ const EmailBasic = () => {
         />
       </div>
       <div>
-        <TableContainer sx={{ maxHeight: 440 }}>
-          <Table
-            stickyHeader
-            aria-label="sticky table"
-            className={styles.mailListTable}>
-            <TableBody>
-              <TableRow hover sx={{ cursor: "pointer" }}>
-                <TableCell padding="checkbox">
-                  <Checkbox
-                    color="primary"
-                    inputProps={{
-                      "aria-labelledby": ""
-                    }}
-                    checked={checked[0] && checked[1]}
-                    //   indeterminate={checked[0] !== checked[1]}
-                    onChange={handleChange1}
-                  />
-                </TableCell>
-                <TableCell
-                  component="th"
-                  scope="row"
-                  padding="none"
-                  colSpan={5}>
-                  <ul className={styles.tableHead}>
-                    <li>읽음</li>
-                    <li>삭제</li>
-                    <li>스팸차단</li>
-                    <li>답장</li>
-                    <li>전체답장</li>
-                    <li>전달</li>
-                    <li>이동</li>
-                    <li>필터</li>
-                    <li>안읽음 삭제 또는 1개 선택</li>
-                  </ul>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell padding="none">
-                  <Checkbox
-                    color="primary"
-                    inputProps={{
-                      "aria-labelledby": ""
-                    }}
-                    checked={checked[0]}
-                    onChange={handleChange2}
-                  />
-                </TableCell>
-                <TableCell>
+        <div className={styles.toolbar}>
+          <List className={styles.tableHead}>
+            <ListItem>
+              <Checkbox
+                color="primary"
+                inputProps={{
+                  "aria-labelledby": "전체선택"
+                }}
+                checked={checked[0] && checked[1]}
+                //   indeterminate={checked[0] !== checked[1]}
+                onChange={handleChange1}
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemButton>읽음</ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>삭제</ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>스팸차단</ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>답장</ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>전체답장</ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>전달</ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>이동</ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>필터</ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>안읽음 삭제 또는 1개 선택</ListItemButton>
+            </ListItem>
+          </List>
+        </div>
+        <List className={styles.mailList} disablePadding={true}>
+          <ListItem>
+            <div className={styles.mailBox}>
+              <div className={styles.checkbox}>
+                <Checkbox
+                  color="primary"
+                  inputProps={{
+                    "aria-labelledby": "선택하기"
+                  }}
+                  checked={checked[0] && checked[1]}
+                  onChange={handleChange1}
+                />
+              </div>
+              <div className={styles.bookmark}>
+                <ListItemButton>
                   <StarOutline />
-                </TableCell>
-                <TableCell>
+                </ListItemButton>
+              </div>
+              <div className={styles.toggleRead}>
+                <ListItemButton>
                   <Email />
-                </TableCell>
-                <TableCell>보낸사람</TableCell>
-                <TableCell>[카테고리] 제목 [새창으로보기]</TableCell>
-                <TableCell>받은시간</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell padding="none">
-                  <Checkbox
-                    color="primary"
-                    inputProps={{
-                      "aria-labelledby": ""
-                    }}
-                  />
-                </TableCell>
-                <TableCell>
-                  <StarOutline />
-                </TableCell>
-                <TableCell>
-                  <Email />
-                </TableCell>
-                <TableCell>보낸사람</TableCell>
-                <TableCell>[카테고리] 제목 [새창으로보기]</TableCell>
-                <TableCell>받은시간</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell padding="none">
-                  <Checkbox
-                    color="primary"
-                    inputProps={{
-                      "aria-labelledby": ""
-                    }}
-                    checked={checked[1]}
-                    onChange={handleChange3}
-                  />
-                </TableCell>
-                <TableCell>
-                  <StarOutline />
-                </TableCell>
-                <TableCell>
-                  <DraftsOutlined />
-                </TableCell>
-                <TableCell>보낸사람</TableCell>
-                <TableCell>[카테고리] 제목 [새창으로보기]</TableCell>
-                <TableCell>받은시간</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
+                </ListItemButton>
+              </div>
+              <div className={styles.sender}>
+                <ListItemButton>보낸사람</ListItemButton>
+              </div>
+              <div className={styles.emailTitle}>
+                <ListItemButton>[카테고리] 제목 [새창으로보기]</ListItemButton>
+              </div>
+              <div className={styles.date}>23.11.23</div>
+            </div>
+          </ListItem>
+        </List>
       </div>
     </>
   );
