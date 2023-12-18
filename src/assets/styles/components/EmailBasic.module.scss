@@ -3,10 +3,11 @@
     justify-content: flex-end;
 }
 .toolbar {
-    border-top: 1px solid rgba(230, 230, 234, 0.7);
+    margin-top: 50px;
+    border-top: 2px solid rgba(230, 230, 234, 0.7);
 }
 
-.tableHead {
+.listHead {
     display: flex;
     flex-direction: row;
     li{
@@ -15,11 +16,19 @@
     }
 }
 
+.paging {
+    margin-top: 80px;
+    ul {
+        justify-content: center;
+    }
+}
+
 .mailList {
     border-top: 1px solid rgba(230, 230, 234, 0.7);
     li{
         padding:8px 10px 8px 0;
         width: auto;
+        border-bottom: 1px solid rgba(230, 230, 234, 0.7);
          div {
             display: flex;
             align-items: center;
@@ -49,4 +58,5 @@
         width: 160px;
         justify-content: flex-end;
     }
+    
 }

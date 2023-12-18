@@ -18,7 +18,8 @@ export default defineConfig({
         find: "@styles",
         replacement: path.resolve(__dirname, "src/assets/styles")
       },
-      { find: "@plugins", replacement: path.resolve(__dirname, "plugins") }
+      { find: "@plugins", replacement: path.resolve(__dirname, "plugins") },
+      { find: "@data", replacement: path.resolve(__dirname, "src/data") }
     ]
   }
 });

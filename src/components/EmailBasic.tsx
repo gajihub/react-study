@@ -5,22 +5,54 @@ import {
   Checkbox,
   List,
   ListItem,
-  ListItemButton
+  ListItemButton,
+  Pagination
 } from "@mui/material";
 import { Search, StarOutline, Email } from "@mui/icons-material";
 import styles from "@styles/components/EmailBasic.module.scss";
+import emailData from "@data/EmailsData.json";
 
 const EmailBasic = () => {
-  const [checked, setChecked] = React.useState([true, false]);
+  const [checkedEmails, setCheckedEmails] = React.useState(
+    new Array(emailData.length).fill(false)
+  );
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const emailsPerPage = 10;
 
-  const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked([event.target.checked, event.target.checked]);
+  //paging
+  const emailpageChange = (event: any, page: number) => {
+    setCurrentPage(page);
   };
 
-  const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked([event.target.checked, checked[1]]);
+  //paging 에 따른 현재 페이지 데이터 가공
+  const currentEmails = emailData.slice(
+    (currentPage - 1) * emailsPerPage,
+    currentPage * emailsPerPage
+  );
+  const currentPageChecked = checkedEmails.slice(
+    (currentPage - 1) * emailsPerPage,
+    currentPage * emailsPerPage
+  );
+
+  // 리스트 내 각 리스트 체크박스 함수 (현재 페이지의 이메일에 대해서만 작동)
+  const emailCheckChange = (pageIndex: number) => {
+    const globalIndex = (currentPage - 1) * emailsPerPage + pageIndex;
+    const newChecked = [...checkedEmails];
+    newChecked[globalIndex] = !newChecked[globalIndex];
+    setCheckedEmails(newChecked);
   };
 
+  // 전체 선택 체크박스 (현재 페이지의 이메일에 대해서만 작동)
+  const checkboxToggleAll = () => {
+    const isAllChecked = currentPageChecked.every(Boolean);
+    const updatedChecked = new Array(emailsPerPage).fill(!isAllChecked);
+
+    setCheckedEmails([
+      ...checkedEmails.slice(0, (currentPage - 1) * emailsPerPage),
+      ...updatedChecked,
+      ...checkedEmails.slice(currentPage * emailsPerPage)
+    ]);
+  };
   return (
     <>
       <div className={styles.searchBox}>
@@ -36,16 +68,19 @@ const EmailBasic = () => {
       </div>
       <div>
         <div className={styles.toolbar}>
-          <List className={styles.tableHead}>
+          <List className={styles.listHead}>
             <ListItem>
               <Checkbox
                 color="primary"
                 inputProps={{
                   "aria-labelledby": "전체선택"
                 }}
-                checked={checked[0] && checked[1]}
-                //   indeterminate={checked[0] !== checked[1]}
-                onChange={handleChange1}
+                onChange={checkboxToggleAll}
+                checked={currentPageChecked.every(Boolean)}
+                indeterminate={
+                  currentPageChecked.some(Boolean) &&
+                  !currentPageChecked.every(Boolean)
+                }
               />
             </ListItem>
             <ListItem>
@@ -78,18 +113,19 @@ const EmailBasic = () => {
           </List>
         </div>
         <List className={styles.mailList} disablePadding={true}>
-          <ListItem>
-            <div className={styles.mailBox}>
-              <div className={styles.checkbox}>
-                <Checkbox
-                  color="primary"
-                  inputProps={{
-                    "aria-labelledby": "선택하기"
-                  }}
-                  checked={checked[0] && checked[1]}
-                  onChange={handleChange2}
-                />
-              </div>
+          {currentEmails.map((email, pageIndex) => (
+            <ListItem key={email.id} className={styles.mailBox}>
+              <Checkbox
+                color="primary"
+                checked={
+                  checkedEmails[(currentPage - 1) * emailsPerPage + pageIndex]
+                }
+                onChange={() =>
+                  emailCheckChange(
+                    (currentPage - 1) * emailsPerPage + pageIndex
+                  )
+                }
+              />
               <div className={styles.bookmark}>
                 <ListItemButton>
                   <StarOutline />
@@ -101,16 +137,24 @@ const EmailBasic = () => {
                 </ListItemButton>
               </div>
               <div className={styles.sender}>
-                <ListItemButton>보낸사람</ListItemButton>
+                <ListItemButton>{email.sender}</ListItemButton>
               </div>
               <div className={styles.emailTitle}>
-                <ListItemButton>[카테고리] 제목 [새창으로보기]</ListItemButton>
+                <ListItemButton>{email.title}</ListItemButton>
               </div>
-              <div className={styles.date}>23.11.23</div>
-            </div>
-          </ListItem>
+              <div className={styles.date}>{email.date}</div>
+            </ListItem>
+          ))}
         </List>
       </div>
+
+      <Pagination
+        count={Math.ceil(emailData.length / emailsPerPage)}
+        color="primary"
+        page={currentPage}
+        onChange={emailpageChange}
+        className={styles.paging}
+      />
     </>
   );
 };
