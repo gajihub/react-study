@@ -21,10 +21,6 @@ const EmailBasic = () => {
     setChecked([event.target.checked, checked[1]]);
   };
 
-  const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked([checked[0], event.target.checked]);
-  };
-
   return (
     <>
       <div className={styles.searchBox}>
@@ -91,7 +87,7 @@ const EmailBasic = () => {
                     "aria-labelledby": "선택하기"
                   }}
                   checked={checked[0] && checked[1]}
-                  onChange={handleChange1}
+                  onChange={handleChange2}
                 />
               </div>
               <div className={styles.bookmark}>
