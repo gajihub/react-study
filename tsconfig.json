@@ -35,7 +35,7 @@
       "@pages/*": ["src/pages/*"],
       "@components/*": ["src/components/*"],
       "@styles/*": ["src/assets/styles/*"],
-      "@plugins/*": ["plugins/*"],
+      "@store/*": ["src/store/*"],
       "@data/*": ["src/data/*"]
     },
   },

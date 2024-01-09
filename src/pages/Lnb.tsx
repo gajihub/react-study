@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setemail } from "../modules/email";
+import { setemail } from "@store/email";
 import Header from "@components/Header";
 import {
   List,

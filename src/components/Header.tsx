@@ -12,7 +12,7 @@ import {
   DiscountOutlined
 } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
-import { setemail } from "../modules/email";
+import { setemail } from "@store/email";
 import styles from "@styles/components/Header.module.scss";
 
 const Header = () => {

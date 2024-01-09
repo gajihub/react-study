@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useDispatch } from "react-redux";
 import {
   TextField,
   InputAdornment,
@@ -8,7 +9,8 @@ import {
   ListItemButton,
   Pagination
 } from "@mui/material";
-import { Search, StarOutline, Email } from "@mui/icons-material";
+import { Search, StarOutline, Email, Star } from "@mui/icons-material";
+import { addImportantEmail, removeImportantEmail } from "@store/email";
 import styles from "@styles/components/EmailBasic.module.scss";
 import emailData from "@data/EmailsData.json";
 
@@ -18,6 +20,11 @@ const EmailBasic = () => {
   );
   const [currentPage, setCurrentPage] = React.useState(1);
   const emailsPerPage = 10;
+  const [emailImportance, setEmailImportance] = React.useState(
+    new Array(emailData.length).fill(false)
+  );
+
+  const dispatch = useDispatch();
 
   //paging
   const emailpageChange = (event: any, page: number) => {
@@ -29,6 +36,7 @@ const EmailBasic = () => {
     (currentPage - 1) * emailsPerPage,
     currentPage * emailsPerPage
   );
+
   const currentPageChecked = checkedEmails.slice(
     (currentPage - 1) * emailsPerPage,
     currentPage * emailsPerPage
@@ -53,6 +61,23 @@ const EmailBasic = () => {
       ...checkedEmails.slice(currentPage * emailsPerPage)
     ]);
   };
+
+  const toggleImportant = (pageIndex: number) => {
+    const globalIndex = (currentPage - 1) * emailsPerPage + pageIndex;
+
+    const newEmailImportance = [...emailImportance];
+    newEmailImportance[globalIndex] = !newEmailImportance[globalIndex];
+    setEmailImportance(newEmailImportance);
+
+    const email = emailData[globalIndex];
+
+    if (newEmailImportance[globalIndex]) {
+      dispatch(addImportantEmail(email));
+    } else {
+      dispatch(removeImportantEmail(email));
+    }
+  };
+
   return (
     <>
       <div className={styles.searchBox}>
@@ -77,10 +102,6 @@ const EmailBasic = () => {
                 }}
                 onChange={checkboxToggleAll}
                 checked={currentPageChecked.every(Boolean)}
-                indeterminate={
-                  currentPageChecked.some(Boolean) &&
-                  !currentPageChecked.every(Boolean)
-                }
               />
             </ListItem>
             <ListItem>
@@ -126,9 +147,17 @@ const EmailBasic = () => {
                   )
                 }
               />
-              <div className={styles.bookmark}>
+              <div
+                className={styles.bookmark}
+                onClick={() => toggleImportant(pageIndex)}>
                 <ListItemButton>
-                  <StarOutline />
+                  {emailImportance[
+                    (currentPage - 1) * emailsPerPage + pageIndex
+                  ] ? (
+                    <Star />
+                  ) : (
+                    <StarOutline />
+                  )}
                 </ListItemButton>
               </div>
               <div className={styles.toggleRead}>
