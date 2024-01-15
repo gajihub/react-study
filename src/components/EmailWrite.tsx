@@ -1,22 +1,22 @@
-import { useSelector } from "react-redux";
 import { Button, Input, List, ListItem } from "@mui/material";
 import { SyncAlt } from "@mui/icons-material";
 import ReactQuill from "react-quill";
+import { useStoreSelector } from "@store/storeSelectors";
 import "react-quill/dist/quill.snow.css";
 import styles from "@styles/components/EmailWrite.module.scss";
 
 const EmailWrite = () => {
-  const mailType = useSelector((store: any) => store.emailReducer.wirteType);
+  const { selectEmailType } = useStoreSelector();
   return (
     <>
       <div className={styles.writeWrap}>
-        {mailType === "write" && (
+        {selectEmailType === "write" && (
           <>
             <div className={styles.title}>메일쓰기</div>
           </>
         )}
 
-        {mailType === "tome" && (
+        {selectEmailType === "tome" && (
           <>
             <div className={styles.title}>내게쓰기</div>
           </>

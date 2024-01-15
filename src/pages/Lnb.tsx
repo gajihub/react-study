@@ -22,11 +22,11 @@ import {
   DoDisturbAltOutlined,
   DeleteOutlineOutlined
 } from "@mui/icons-material";
+
 import styles from "@styles/pages/Lnb.module.scss";
 
 const Lnb = () => {
   const dispatch = useDispatch();
-  const selected = useSelector((state: any) => state.selected);
 
   const emailAll = () => {
     dispatch(setemail("basic"));

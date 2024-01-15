@@ -12,11 +12,14 @@ import {
   DiscountOutlined
 } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
+import { useStoreSelector } from "@store/storeSelectors";
 import { setemail } from "@store/email";
 import styles from "@styles/components/Header.module.scss";
+import emailData from "@data/EmailsData.json";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const { selectEmailState } = useStoreSelector();
 
   const emailWrite = () => {
     dispatch(setemail("write", "write"));
@@ -24,6 +27,10 @@ const Header = () => {
 
   const emailTome = () => {
     dispatch(setemail("write", "tome"));
+  };
+
+  const emailList = () => {
+    dispatch(setemail("list", "unread"));
   };
 
   return (
@@ -37,8 +44,8 @@ const Header = () => {
       </ButtonGroup>
       <List className={styles.topMenu} disablePadding={true}>
         <ListItem>
-          <ListItemButton className={styles.listBtn}>
-            <span>0</span>안읽음
+          <ListItemButton className={styles.listBtn} onClick={emailList}>
+            <span>{emailData.length - selectEmailState.length}</span>안읽음
           </ListItemButton>
         </ListItem>
         <ListItem>

@@ -1,8 +1,6 @@
 import React from "react";
 
-type Props = {};
-
-const EmailList = (props: Props) => {
+const EmailList = () => {
   return <div>EmailList</div>;
 };
 
