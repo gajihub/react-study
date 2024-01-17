@@ -186,7 +186,6 @@ const EmailBasic = () => {
                 key={email.id}
                 className={cx(
                   styles.mailBox,
-                  // !emailRead[(currentPage - 1) * emailsPerPage + pageIndex]
                   emailSaved < 0 ? styles.eamilread : ""
                 )}>
                 <Checkbox

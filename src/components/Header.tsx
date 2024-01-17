@@ -33,6 +33,10 @@ const Header = () => {
     dispatch(setemail("list", "unread"));
   };
 
+  const emailImList = () => {
+    dispatch(setemail("imlist", "importList"));
+  };
+
   return (
     <>
       <ButtonGroup
@@ -49,7 +53,7 @@ const Header = () => {
           </ListItemButton>
         </ListItem>
         <ListItem>
-          <ListItemButton className={styles.listBtn}>
+          <ListItemButton className={styles.listBtn} onClick={emailImList}>
             <ListItemIcon className={styles.listIcon}>
               <StarBorderPurple500Sharp />
             </ListItemIcon>

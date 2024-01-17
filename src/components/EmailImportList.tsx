@@ -30,13 +30,7 @@ import emailData from "@data/EmailsData.json";
 const EmailList = () => {
   const { selectImportant, selectEmailState } = useStoreSelector();
 
-  const orderEmailArray = emailData.filter(
-    (item) => !selectEmailState.includes(item)
-  );
-
-  const [checkedEmails, setCheckedEmails] = React.useState(
-    new Array(orderEmailArray.length).fill(false)
-  );
+  const orderEmailArray = selectImportant;
 
   const [currentPage, setCurrentPage] = React.useState(1);
   const emailsPerPage = 10;
@@ -69,31 +63,6 @@ const EmailList = () => {
     currentPage * emailsPerPage
   );
 
-  const currentPageChecked = checkedEmails.slice(
-    (currentPage - 1) * emailsPerPage,
-    currentPage * emailsPerPage
-  );
-
-  // 리스트 내 각 리스트 체크박스 함수 (현재 페이지의 이메일에 대해서만 작동)
-  const emailCheckChange = (pageIndex: number) => {
-    const globalIndex = (currentPage - 1) * emailsPerPage + pageIndex;
-    const newChecked = [...checkedEmails];
-    newChecked[globalIndex] = !newChecked[globalIndex];
-    setCheckedEmails(newChecked);
-  };
-
-  // 전체 선택 체크박스 (현재 페이지의 이메일에 대해서만 작동)
-  const checkboxToggleAll = () => {
-    const isAllChecked = currentPageChecked.every(Boolean);
-    const updatedChecked = new Array(emailsPerPage).fill(!isAllChecked);
-
-    setCheckedEmails([
-      ...checkedEmails.slice(0, (currentPage - 1) * emailsPerPage),
-      ...updatedChecked,
-      ...checkedEmails.slice(currentPage * emailsPerPage)
-    ]);
-  };
-
   //중요 표시
   const toggleImportant = (pageIndex: number) => {
     const globalIndex = (currentPage - 1) * emailsPerPage + pageIndex;
@@ -102,7 +71,7 @@ const EmailList = () => {
     newEmailImportance[globalIndex] = !newEmailImportance[globalIndex];
     setEmailImportance(newEmailImportance);
 
-    const email = emailData[globalIndex];
+    const email = orderEmailArray[globalIndex];
 
     if (newEmailImportance[globalIndex]) {
       dispatch(addImportantEmail(email));
@@ -119,7 +88,7 @@ const EmailList = () => {
     newEmailRead[globalIndex] = !newEmailRead[globalIndex];
     setemailRead(newEmailRead);
 
-    const email = emailData[globalIndex];
+    const email = orderEmailArray[globalIndex];
 
     if (newEmailRead[globalIndex]) {
       dispatch(addReadEmail(email));
@@ -131,7 +100,7 @@ const EmailList = () => {
   return (
     <>
       <div>
-        <div className={styles.title}>안읽은 메일</div>
+        <div className={styles.title}>중요 메일</div>
         <div className={styles.toolbar}>
           <List className={styles.listHead}>
             <ListItem>
@@ -140,8 +109,6 @@ const EmailList = () => {
                 inputProps={{
                   "aria-labelledby": "전체선택"
                 }}
-                onChange={checkboxToggleAll}
-                checked={currentPageChecked.every(Boolean)}
               />
             </ListItem>
             <ListItem>
@@ -175,55 +142,53 @@ const EmailList = () => {
         </div>
         <List className={styles.mailList} disablePadding={true}>
           {currentEmails.length > 0 ? (
-            currentEmails.map((email, pageIndex) => {
-              const emailSaved = findEmailIndexInState(email.id);
-              const importSaved = findImportIndexInState(email.id);
-              return (
-                <React.Fragment key={email.id + "-" + pageIndex}>
-                  <ListItem
-                    className={cx(
-                      styles.mailBox,
+            currentEmails.map(
+              (
+                email: {
+                  id: number;
+                  sender: string | number | boolean | undefined;
+                  title: string;
+                  date: string | number;
+                },
+                pageIndex: number
+              ) => {
+                const emailSaved = findEmailIndexInState(email.id);
+                const importSaved = findImportIndexInState(email.id);
+                return (
+                  <React.Fragment key={email.id + "-" + pageIndex}>
+                    <ListItem
+                      className={cx(
+                        styles.mailBox,
 
-                      emailSaved < 0 ? styles.eamilread : ""
-                    )}>
-                    <Checkbox
-                      color="primary"
-                      checked={
-                        checkedEmails[
-                          (currentPage - 1) * emailsPerPage + pageIndex
-                        ]
-                      }
-                      onChange={() =>
-                        emailCheckChange(
-                          (currentPage - 1) * emailsPerPage + pageIndex
-                        )
-                      }
-                    />
-                    <div
-                      className={styles.bookmark}
-                      onClick={() => toggleImportant(pageIndex)}>
-                      <ListItemButton>
-                        {importSaved < 0 ? <StarOutline /> : <Star />}
-                      </ListItemButton>
-                    </div>
-                    <div
-                      className={styles.toggleRead}
-                      onClick={() => toggleReadChk(pageIndex)}>
-                      <ListItemButton>
-                        {emailSaved < 0 ? <Email /> : <DraftsOutlined />}
-                      </ListItemButton>
-                    </div>
-                    <div className={styles.sender}>
-                      <ListItemButton>{email.sender}</ListItemButton>
-                    </div>
-                    <div className={styles.emailTitle}>
-                      <ListItemButton>{email.title}</ListItemButton>
-                    </div>
-                    <div className={styles.date}>{email.date}</div>
-                  </ListItem>
-                </React.Fragment>
-              );
-            })
+                        emailSaved < 0 ? styles.eamilread : ""
+                      )}>
+                      <Checkbox color="primary" />
+                      <div
+                        className={styles.bookmark}
+                        onClick={() => toggleImportant(pageIndex)}>
+                        <ListItemButton>
+                          {importSaved < 0 ? <StarOutline /> : <Star />}
+                        </ListItemButton>
+                      </div>
+                      <div
+                        className={styles.toggleRead}
+                        onClick={() => toggleReadChk(pageIndex)}>
+                        <ListItemButton>
+                          {emailSaved < 0 ? <Email /> : <DraftsOutlined />}
+                        </ListItemButton>
+                      </div>
+                      <div className={styles.sender}>
+                        <ListItemButton>{email.sender}</ListItemButton>
+                      </div>
+                      <div className={styles.emailTitle}>
+                        <ListItemButton>{email.title}</ListItemButton>
+                      </div>
+                      <div className={styles.date}>{email.date}</div>
+                    </ListItem>
+                  </React.Fragment>
+                );
+              }
+            )
           ) : (
             <div className={styles.emptyEmail}>
               <div className={styles.emptyIcon}>

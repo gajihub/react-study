@@ -1,0 +1,29 @@
+@use 'EmailBasic.module.scss';
+
+.emptyEmail {
+    margin-top: 80px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+   
+    p{
+        margin-top: 30px;
+        font-size: 15px;
+    }
+    .emptyIcon {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        background-color: #f3f3f3;
+        border-radius: 50%;
+        & > svg {
+            position:absolute;
+            top:50%;
+            left: 50%;
+            margin-top: -15px;
+            margin-left: -15px;
+            font-size: 30px;
+        }
+    }
+}
